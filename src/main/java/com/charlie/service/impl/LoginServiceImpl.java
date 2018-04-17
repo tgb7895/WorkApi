@@ -16,5 +16,6 @@ public class LoginServiceImpl implements LoginService {
     public LoginEntity get(LoginInput loginInput) {
 
         return loginMapper.get(loginInput);
+
     }
 }

@@ -3,7 +3,7 @@ package com.charlie.entity;
 
 import java.util.List;
 
-public class LoginEntity extends BasePE{
+public class LoginEntity extends Returndata {
 
     private int worker_id;
     private String username;

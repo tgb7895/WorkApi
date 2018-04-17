@@ -1,6 +1,6 @@
 package com.charlie.entity;
 
-public class BasePE {
+public class Returndata {
     private String returnCode;
     private String errorCode;
     private String errorMsg;

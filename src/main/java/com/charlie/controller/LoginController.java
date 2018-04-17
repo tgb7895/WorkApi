@@ -9,9 +9,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,14 +24,12 @@ public class LoginController {
     private LoginService loginService;
 
     @ResponseBody
-    @RequestMapping("/Login")
+    @RequestMapping(value = "/login")
     public LoginEntity Login(){
-
         LoginInput loginInput=new LoginInput();
-        loginInput.setPassword("623");
-        loginInput.setPhone("6165");
+        loginInput.setPassword("admin");
+        loginInput.setPhone("1565435434");
         LoginEntity loginEntity=loginService.get(loginInput);
-
         return loginEntity;
     }
 }
