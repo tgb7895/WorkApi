@@ -20,7 +20,7 @@
     </resultMap>
 
     <select id="get" parameterType="com.charlie.entity.LoginInput" resultMap="LoginOutApi">
-SELECT
+        SELECT
 tenement_community_workperson.id,
 tenement_community_workperson.username,
 tenement_community_workperson.telephone,
@@ -37,7 +37,5 @@ INNER JOIN tenement_community ON tenement_community_workperson_relation.communit
 WHERE
 tenement_community_workperson.`password` = #{password} AND
 tenement_community_workperson.telephone = #{phone}
-
-
   </select>
 </mapper>

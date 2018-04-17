@@ -25,10 +25,11 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping(value = "/login")
-    public LoginEntity Login(){
+    public LoginEntity Login(@RequestParam(value = "password") String password,
+                             @RequestParam(value = "phonenum") String phone){
         LoginInput loginInput=new LoginInput();
-        loginInput.setPassword("admin");
-        loginInput.setPhone("1565435434");
+        loginInput.setPassword(password);
+        loginInput.setPhone(phone);
         LoginEntity loginEntity=loginService.get(loginInput);
         return loginEntity;
     }
