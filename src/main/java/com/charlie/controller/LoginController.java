@@ -28,8 +28,8 @@ public class LoginController {
     public LoginEntity Login(){
 
         LoginInput loginInput=new LoginInput();
-        loginInput.setPassword("623");
-        loginInput.setPhone("6165");
+        loginInput.setPassword("admin");
+        loginInput.setPhone("1565435434");
         LoginEntity loginEntity=loginService.get(loginInput);
 
         return loginEntity;
