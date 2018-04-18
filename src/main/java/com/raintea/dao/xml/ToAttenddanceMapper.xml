@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.raintea.dao.mapper.ToAttenddanceMapper">
+    <insert id="insertAll" parameterType="com.raintea.entity.ToAttendanceIn">
+INSERT INTO tenement_woker_location (
+	`worker_id`,
+	`x`,
+	`Y`,
+	`flag`,
+	`date`
+)
+VALUES
+	(
+		#{worker_id},
+		#{x},
+		#{y},
+		#{flag},
+		#{date}
+	)
+    </insert>
+
+	<resultMap id="ToAttendanceOut" type="com.raintea.entity.ToAttendanceData">
+		<id column="id" property="repair_id"/>
+		<result column="username" property="owner_name"/>
+		<result column="order_number" property="order_number"/>
+		<result column="cause" property="cause"/>
+		<result column="address" property="address"/>
+	</resultMap>
+	<select id="selectAll" parameterType="int" resultMap="ToAttendanceOut">
+		SELECT
+tenement_repair.id,
+tenement_owner.username,
+tenement_repair.order_number,
+tenement_repair.cause,
+tenement_repair.address
+FROM
+tenement_repair
+INNER JOIN tenement_owner ON tenement_repair.owner_id = tenement_owner.id
+WHERE
+tenement_repair.worker_id = #{id}
+	</select>
+</mapper>

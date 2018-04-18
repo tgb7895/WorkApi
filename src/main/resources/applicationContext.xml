@@ -13,7 +13,7 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 自动扫描SpringMVC包 ,将带有注解的类 纳入spring容器管理 -->
-    <context:component-scan base-package="com.charlie"/>
+    <context:component-scan base-package="com.raintea"/>
 
     <!-- 引入jdbc配置文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -66,11 +66,11 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:mybatis.xml"/>
-        <property name="mapperLocations" value="classpath*:com/charlie/dao/xml/*Mapper.xml"/>
+        <property name="mapperLocations" value="classpath*:com/raintea/dao/xml/*Mapper.xml"/>
     </bean>
 
     <!-- spring与mybatis整合配置，扫描所有dao -->
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="com.charlie.dao"-->
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="com.raintea.dao"-->
           <!--p:sqlSessionFactoryBeanName="sqlSessionFactory"/>-->
 
     <!-- 配置SqlSessionTemplate -->
@@ -79,7 +79,7 @@
     </bean>
     <!-- 配置mybatis mapper接口，扫描所有dao -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.charlie.dao"/>
+        <property name="basePackage" value="com.raintea.dao"/>
         <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
     </bean>
 
@@ -99,7 +99,7 @@
     </tx:advice>
 
     <aop:config>
-        <aop:pointcut id="serviceMethods" expression="execution(* com.charlie.service..*(..))"/>
+        <aop:pointcut id="serviceMethods" expression="execution(* com.raintea.service..*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods"/>
     </aop:config>
 
