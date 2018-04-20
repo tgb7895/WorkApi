@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.raintea.dao.mapper.GetUndistributedOrderMapper">
+    <resultMap id="GetUnd" type="com.raintea.entity.GetUndistributedOrderData">
+        <!--private int order_id;-->
+        <!--private String order_number;-->
+        <!--private String address;-->
+        <!--private String owner_phone;-->
+        <!--private String appointment_time;-->
+        <!--private String cause;-->
+        <!--private String owner_phone_1;-->
+        <!--private List<String> image;-->
+
+        <id column="id" property="order_id"/>
+        <result column="order_number" property="order_number"/>
+        <result column="address" property="address"/>
+        <result column="telephone" property="owner_phone"/>
+        <result column="appointment_time" property="appointment_time"/>
+        <result column="cause" property="cause"/>
+
+        <collection property="image" ofType="String">
+            <result column="img_url" property="image"/>
+        </collection>
+    </resultMap>
+
+    <select id="getData" parameterType="com.raintea.entity.GetUndistributedOrderInput" resultMap="GetUnd">
+SELECT
+tenement_repair.id,
+tenement_repair.order_number,
+tenement_repair.address,
+tenement_owner.telephone,
+tenement_repair.appointment_time,
+tenement_repair.cause,
+tenement_image.img_url
+FROM
+tenement_repair
+INNER JOIN tenement_owner ON tenement_repair.owner_id = tenement_owner.id
+INNER JOIN tenement_image ON tenement_image.flag_id = tenement_repair.id
+WHERE
+tenement_image.flag = 1 AND
+tenement_repair.community_id = #{community_id} AND
+tenement_repair.worker_id = #{worker_id}
+  </select>
+</mapper>
